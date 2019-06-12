@@ -40,6 +40,23 @@ def num_factor(x):
 def isTriangleNumber(n):
     a = int(sqrt(2*n))
     return 0.5*a*(a+1) == n
+            
+def tau(num):
+    n = num
+    i = 2
+    p = 1
+    if (num == 1):
+        return 1
+    while (i * i <= n):
+        c = 1
+        while (n % i == 0):
+            n /= i
+            c += 1
+        i += 1
+        p *= c
+    if (n == num or n > 1):
+        p *= 2
+    return p
 
 if __name__ == '__main__':
     import time
@@ -47,7 +64,9 @@ if __name__ == '__main__':
     start_time = time.time()
     t = triangular_gene()
     x = next(t)
-    while num_factor(x) <= 500:
+    while tau(x) <= 500:
         x = next(t)
-print(x)
-print("Time elapsed:", time.time() - start_time)
+    print(x)
+    print("Time elapsed:", time.time() - start_time)
+
+    
